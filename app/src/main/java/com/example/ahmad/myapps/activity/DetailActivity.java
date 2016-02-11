@@ -348,4 +348,8 @@ public class DetailActivity extends AppCompatActivity {
             pDialog.dismiss();
     }
 
+    public void push(){
+
+    }
+
 }
