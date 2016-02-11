@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">myapps</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">login</string>
+    <string name="title_activity_detail">DetailActivity</string>
+
+    <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
+    cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
+    bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
+    cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
+    the big cheese.</string>
+    <string name="activity_password">password</string>
+    <string name="activity_singIn">Login</string>
+    <string name="activity_new_user">registrasi user</string>
+    <string name="register_activity">Registration</string>
+    <string name="login_activity">Login</string>
+</resources>
