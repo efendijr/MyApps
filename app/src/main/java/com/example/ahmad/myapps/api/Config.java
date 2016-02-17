@@ -16,11 +16,11 @@ public class Config {
     public static final String DEFAULT_CURRENCY = "USD";
     public static final String DEFAULT_MERCHANT = "Gats Shop";
 
-    public static final String URL_PAYMENTS = "http://192.168.1.7/slimframe/verifyPayment";
-    public static final String URL_PRODUCTS = "http://192.168.1.7/PayPalServer/v1/products";
-    public static final String URL_MAKANAN = "http://192.168.1.7/slimframe/listmakanan";
-    public static final String URL_MINUMAN = "http://192.168.1.7/slimframe/listminuman";
+    public static final String URL_PAYMENTS = "http://192.168.1.8/serviceslim/verifyPayment";
+    public static final String URL_PRODUCTS = "http://192.168.1.8/serviceslim/v1/products";
+    public static final String URL_MAKANAN = "http://192.168.1.8/serviceslim/listmakanan";
+    public static final String URL_MINUMAN = "http://192.168.1.8/serviceslim/listminuman";
 
-    public static final String URL_REGISTRASI = "http://192.168.1.7/slimframe/anggota";
-    public static final String URL_LOGIN = "http://192.168.1.7/slimframe/anggota1";
+    public static final String URL_REGISTRASI = "http://192.168.1.8/serviceslim/anggota";
+    public static final String URL_LOGIN = "http://192.168.1.8/serviceslim/anggota1";
 }
