@@ -85,6 +85,7 @@ public class ProductFragment extends Fragment {
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getFragmentManager());
         pagerAdapter.addFragment(new FoodFragment(), "Foods");
         pagerAdapter.addFragment(new DrinkFragment(), "Drinks");
+        pagerAdapter.addFragment(new FoodyFragment(), "Foodys");
         viewPager.setAdapter(pagerAdapter);
     }
 

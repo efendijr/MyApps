@@ -216,125 +216,148 @@ public class DetailActivity extends AppCompatActivity {
         final BigDecimal sPrice = new BigDecimal(harga);
 
         PayPalPayment payPalPayment = new PayPalPayment(sPrice, Config.DEFAULT_CURRENCY, name, Config.PAYMENT_INTENT);
+
         Intent intent1 = new Intent(DetailActivity.this, PaymentActivity.class);
+
         intent1.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig);
+
         intent1.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
+
         startActivityForResult(intent1, REQUEST_CODE_PAYMENT);
 
     }
 
 
     /* verifiying mobile payment on server side */
-    private void verifyPayment(final String paymentId, final String payment_client) {
-        pDialog.setMessage("verifikasi payment..");
-        showpDialog();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Config.URL_PAYMENTS, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "verify pament: " + response.toString());
-
-                try {
-                    JSONObject res = new JSONObject(response);
-                    boolean error = res.getBoolean("error");
-                    String message = res.getString("message");
-
-                    Toast.makeText(DetailActivity.this, "message: " + message, Toast.LENGTH_SHORT).show();
-
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                hidepDialog();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Verifikasi Error: " + error.getMessage());
-                Toast.makeText(DetailActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                hidepDialog();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams(){
-                db = new SQLiteHandler(DetailActivity.this);
-                session = new SessionManager(DetailActivity.this);
-                HashMap<String, String> anggota = db.getUserDetails();
-                String anggotaId = anggota.get("id");
-                String anggotaName = anggota.get("name");
-                String anggotaImage = anggota.get("image");
-
-                final Intent intent = getIntent();
-                final String menuId = intent.getStringExtra(EXTRA_ID);
-                final String menuName = intent.getStringExtra(EXTRA_NAME);
-                final String menuPrice = intent.getStringExtra(EXTRA_PRICE);
-                final String menudesc = intent.getStringExtra(EXTRA_DESC);
-                final String menuImage = intent.getStringExtra(EXTRA_IMAGE);
-                final String menuSku = intent.getStringExtra(EXTRA_SKU);
-                final String restoId = intent.getStringExtra(EXTRA_RES_ID);
-                final String restoName = intent.getStringExtra(EXTRA_RES_NAME);
-                final String restoLogo = intent.getStringExtra(EXTRA_LOGO);
-
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("paymentId", paymentId);
-                params.put("paymentClientJson", payment_client);
-                params.put("menuId", menuId);
-                params.put("menuName", menuName);
-                params.put("menuPrice", menuPrice);
-                params.put("menuImage", menuImage);
-                params.put("menuSku", menuSku);
-                params.put("restoName", restoName);
-                params.put("restoLogo", restoLogo);
-                params.put("anggotaId", anggotaId);
-                params.put("anggotaName", anggotaName);
-                params.put("anggotaImage", anggotaImage);
-
-                return params;
-            }
-        };
-
-        int socketTimeOut = 6000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeOut,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-
-        VolleySingleton.getInstance().addToRequestQueue(stringRequest);
-    }
+//    private void verifyPayment(final String paymentId, final String payment_client) {
+//        pDialog.setMessage("verifikasi payment..");
+//        showpDialog();
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+//                Config.URL_PAYMENTS, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.d(TAG, "verify pament: " + response.toString());
+//
+//                try {
+//                    JSONObject res = new JSONObject(response);
+//                    boolean error = res.getBoolean("error");
+//                    String message = res.getString("message");
+//
+//                    Toast.makeText(DetailActivity.this, "message: " + message, Toast.LENGTH_SHORT).show();
+//
+//
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                hidepDialog();
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e(TAG, "Verifikasi Error: " + error.getMessage());
+//                Toast.makeText(DetailActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//                hidepDialog();
+//            }
+//        }){
+//            @Override
+//            protected Map<String, String> getParams(){
+//                db = new SQLiteHandler(DetailActivity.this);
+//                session = new SessionManager(DetailActivity.this);
+//                HashMap<String, String> anggota = db.getUserDetails();
+//                String anggotaId = anggota.get("id");
+//                String anggotaName = anggota.get("name");
+//                String anggotaImage = anggota.get("image");
+//
+//                final Intent intent = getIntent();
+//                final String menuId = intent.getStringExtra(EXTRA_ID);
+//                final String menuName = intent.getStringExtra(EXTRA_NAME);
+//                final String menuPrice = intent.getStringExtra(EXTRA_PRICE);
+//                final String menudesc = intent.getStringExtra(EXTRA_DESC);
+//                final String menuImage = intent.getStringExtra(EXTRA_IMAGE);
+//                final String menuSku = intent.getStringExtra(EXTRA_SKU);
+//                final String restoId = intent.getStringExtra(EXTRA_RES_ID);
+//                final String restoName = intent.getStringExtra(EXTRA_RES_NAME);
+//                final String restoLogo = intent.getStringExtra(EXTRA_LOGO);
+//
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("paymentId", paymentId);
+//                params.put("paymentClientJson", payment_client);
+//                params.put("menuId", menuId);
+//                params.put("menuName", menuName);
+//                params.put("menuPrice", menuPrice);
+//                params.put("menuImage", menuImage);
+//                params.put("menuSku", menuSku);
+//                params.put("restoName", restoName);
+//                params.put("restoLogo", restoLogo);
+//                params.put("anggotaId", anggotaId);
+//                params.put("anggotaName", anggotaName);
+//                params.put("anggotaImage", anggotaImage);
+//
+//                return params;
+//            }
+//        };
+//
+//        int socketTimeOut = 6000;
+//        RetryPolicy policy = new DefaultRetryPolicy(socketTimeOut,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+//        stringRequest.setRetryPolicy(policy);
+//
+//        VolleySingleton.getInstance().addToRequestQueue(stringRequest);
+//    }
 
 
     /* receive paypal response */
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == REQUEST_CODE_PAYMENT) {
+//            if (resultCode == Activity.RESULT_OK) {
+//                PaymentConfirmation confirmation = data
+//                        .getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+//                if (confirmation != null) {
+//                    try {
+//                        Log.e(TAG, confirmation.toJSONObject().toString(7));
+//                        Log.e(TAG, confirmation.getPayment().toJSONObject().toString(7));
+//
+//                        String paymentId = confirmation.toJSONObject().getJSONObject("response").getString("id");
+//                        String payment_client = confirmation.getPayment().toJSONObject().toString();
+//
+//                        db = new SQLiteHandler(DetailActivity.this);
+//                        session = new SessionManager(DetailActivity.this);
+//                        HashMap<String, String> anggota = db.getUserDetails();
+//                        String anggotaId = anggota.get("id");
+//
+//                        Log.e(TAG, "User_id: " + anggotaId + ", paymentId: " + paymentId + ", payment_json: " + payment_client);
+//
+//                        verifyPayment(paymentId, payment_client);
+//
+//                    } catch (JSONException e) {
+//                        Log.e(TAG, "failure : " + e.getMessage());
+//                    }
+//                }
+//            } else if (resultCode == Activity.RESULT_CANCELED) {
+//                Log.e(TAG, "User Canceled.");
+//            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+//                Log.e(TAG, "Invalid payment or PayPalConfiguration was submitted..");
+//            }
+//        }
+//    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_PAYMENT) {
-            if (resultCode == Activity.RESULT_OK) {
-                PaymentConfirmation confirmation = data
-                        .getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-                if (confirmation != null) {
-                    try {
-                        Log.e(TAG, confirmation.toJSONObject().toString(7));
-                        Log.e(TAG, confirmation.getPayment().toJSONObject().toString(7));
+            Toast.makeText(getApplicationContext(), "Payment done successfully", Toast.LENGTH_SHORT).show();
+        }
 
-                        String paymentId = confirmation.toJSONObject().getJSONObject("response").getString("id");
-                        String payment_client = confirmation.getPayment().toJSONObject().toString();
-
-                        Log.e(TAG, "paymentId: " + paymentId + ", payment_json: " + payment_client);
-
-                        verifyPayment(paymentId, payment_client);
-
-                    } catch (JSONException e) {
-                        Log.e(TAG, "failure : " + e.getMessage());
-                    }
-                }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Log.e(TAG, "User Canceled.");
-            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
-                Log.e(TAG, "Invalid payment or PayPalConfiguration was submitted..");
-            }
+        else if (resultCode == Activity.RESULT_CANCELED) {
+            Toast.makeText(getApplicationContext(), "Payment canceled", Toast.LENGTH_SHORT).show();
+        } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+            Toast.makeText(getApplicationContext(), "Payment failed", Toast.LENGTH_SHORT).show();
         }
     }
 

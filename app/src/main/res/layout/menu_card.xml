@@ -14,14 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
+            <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/image1"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            app:border="true"
-            app:border_width="1dp"
-            app:border_color="@color/colorAccent"
+            app:civ_border="true"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/colorAccent"
             android:layout_centerVertical="true"/>
 
         <TextView
