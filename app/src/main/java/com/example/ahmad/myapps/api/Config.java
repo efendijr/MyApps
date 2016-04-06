@@ -16,12 +16,13 @@ public class Config {
     public static final String DEFAULT_CURRENCY = "USD";
     public static final String DEFAULT_MERCHANT = "Gats Shop";
 
-    public static final String URL_PAYMENTS = "http://192.168.1.10/serviceslim/v1/verifyPayment";
-    public static final String URL_PRODUCTS = "http://192.168.1.10/serviceslim/v1/products";
-    public static final String URL_MAKANAN = "http://192.168.1.10/serviceslim/listmakanan";
-    public static final String URL_MINUMAN = "http://192.168.1.10/serviceslim/listminuman";
-    public static final String URL_FOOD = "http://192.168.1.10/serviceslim/food";
+    public static final String URL_PAYMENTS = "http://192.168.1.18/serviceslim/verifyPayment";
+    public static final String URL_BAYAR = "http://192.168.1.18/serviceslim/verifyresto";
+    public static final String URL_PRODUCTS = "http://192.168.1.18/serviceslim/products";
+    public static final String URL_MAKANAN = "http://192.168.1.18/serviceslim/listmakanan";
+    public static final String URL_MINUMAN = "http://192.168.1.18/serviceslim/listminuman";
+    public static final String URL_FOOD = "http://192.168.1.18/serviceslim/food";
 
-    public static final String URL_REGISTRASI = "http://192.168.1.10/serviceslim/anggota";
-    public static final String URL_LOGIN = "http://192.168.1.10/serviceslim/anggota1";
+    public static final String URL_REGISTRASI = "http://192.168.1.18/serviceslim/anggota";
+    public static final String URL_LOGIN = "http://192.168.1.18/serviceslim/anggota1";
 }

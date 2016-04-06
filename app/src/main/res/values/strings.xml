@@ -17,4 +17,5 @@
     <string name="activity_new_user">registrasi user</string>
     <string name="register_activity">Registration</string>
     <string name="login_activity">Login</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

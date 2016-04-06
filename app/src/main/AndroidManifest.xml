@@ -32,6 +32,16 @@
                 android:value="com.example.ahmad.myapps.MainActivity" />
         </activity>
         <activity
+            android:name=".activity.BayarActivity"
+            android:label="@string/title_activity_detail"
+            android:parentActivityName=".activity.DetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ahmad.myapps.activity.DetailActivity" />
+        </activity>
+
+        <activity
             android:name=".activity.RegistrasiActivity"
             android:label="@string/register_activity"
             android:parentActivityName=".MainActivity"
@@ -62,6 +72,10 @@
             android:name="io.card.payment.CardIOActivity"
             android:configChanges="keyboardHidden|orientation" />
         <activity android:name="io.card.payment.DataEntryActivity" />
+        <activity
+            android:name=".activity.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -138,6 +138,7 @@ public class RegistrasiActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Error 2", Toast.LENGTH_SHORT).show();
+
                 }
 
             }
@@ -146,8 +147,12 @@ public class RegistrasiActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Registration Error: " + error.getMessage());
 
-                Toast.makeText(getApplicationContext(), "Error 3", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Error 3", Toast.LENGTH_SHORT).show();
                 hideDialog();
+
+                Intent intent = new Intent(RegistrasiActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
 
             }
         }) {
